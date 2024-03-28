@@ -1,7 +1,7 @@
 /**
  *  sidebar 项目
  */
-export declare interface SidebarItem {
+export interface SidebarItem {
   /** sidebar名称 文件名 */
   text: string,
   /** 相对根目录的路径 */

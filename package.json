@@ -1,10 +1,14 @@
 {
-  "name": "vitepress-simple-sidebar",
+  "name": "vite-plugin-vitepress-simple-sidebar",
   "version": "0.0.1",
   "description": "自动生成 vitepress 侧边栏目录的插件",
-  "keywords": [],
+  "keywords": ["vite-plugin", "vitepress", "vitepress sidebar"],
   "author": "lijiayuan365",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lijiayuan365/vite-plugin-vitepress-sidebar.git"
+  },
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -35,9 +39,5 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  },
-  "dependencies": {
-    "fast-glob": "^3.3.1",
-    "gray-matter": "^4.0.3"
   }
 }
