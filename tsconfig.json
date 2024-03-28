@@ -6,7 +6,6 @@
     "moduleResolution": "Node",
     "lib": [ "ESNext" ],
     "isolatedModules": true,
-    "verbatimModuleSyntax": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
