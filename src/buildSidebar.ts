@@ -3,7 +3,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 
 import type { SidebarItem } from './types/index';
-import { awaitTo, unionArrays } from './utils';
+import { awaitTo, getMdTitle, unionArrays } from './utils';
 import { SidebarOptions } from '../types';
 
 const DEFAULT_EXCLUDE_DIRS = ['.vitepress'];
@@ -32,8 +32,7 @@ function buildNode(fileName: string, isDirectory: boolean, filePath: string): Si
  * @returns 
  */
 async function buildTree(parentPath: string, options: SidebarOptions): Promise<SidebarItem | void> {
-  const result: SidebarItem = buildNode(path.basename(parentPath), true, parentPath);
-  // const node = buildNode(path.basename(parentPath), true, parentPath)
+  const result = buildNode(path.basename(parentPath), true, parentPath);
   const [err, files] = await awaitTo(fs.readdir(parentPath));
   if (err) return console.log(`Error`, err);
   for (const item of files) {
@@ -49,7 +48,17 @@ async function buildTree(parentPath: string, options: SidebarOptions): Promise<S
         }
       })
     } else {
-      result.items?.push(buildNode(path.basename(filePath, '.md'), false, filePath))
+      // 过滤非 md 文件操作
+  if (!filePath.endsWith('.md')) continue;
+      let fileName = path.basename(filePath, '.md');
+      if (options.useMarkdownTitle) {
+        const [err, title] = await awaitTo(getMdTitle(filePath));
+        if (!err && title) {
+          fileName = title;
+        }
+      }
+      const node = buildNode(fileName, false, filePath);
+      result.items?.push(node)
     }
   }
 
@@ -57,7 +66,7 @@ async function buildTree(parentPath: string, options: SidebarOptions): Promise<S
 }
 
 /**
- *
+ * 
  * @param rootPath
  * @returns
  */

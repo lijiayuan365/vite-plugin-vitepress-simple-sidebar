@@ -2,7 +2,11 @@
   "name": "vite-plugin-vitepress-simple-sidebar",
   "version": "0.0.1",
   "description": "自动生成 vitepress 侧边栏目录的插件",
-  "keywords": ["vite-plugin", "vitepress", "vitepress sidebar"],
+  "keywords": [
+    "vite-plugin",
+    "vitepress",
+    "vitepress sidebar"
+  ],
   "author": "lijiayuan365",
   "license": "MIT",
   "repository": {
@@ -29,6 +33,7 @@
     "@types/node": "^20.11.30",
     "rollup": "^3.29.4",
     "rollup-plugin-typescript2": "^0.35.0",
+    "rollup-plugin-visualizer": "^5.12.0",
     "typescript": "^5.4.3",
     "vite": "^5.2.3",
     "vitepress": "1.0.0-rc.45"

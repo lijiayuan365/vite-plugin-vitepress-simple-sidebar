@@ -12,6 +12,8 @@ export interface SidebarOptions {
   includeFiles?: string[],
   /** 排除掉 生成 sidebar的 文件，比如 index.md 这种不想出现在sidebar 中 */
   excludeFiles?: string[],
+  /** 是否读取 markdown  文件中的一级标题作为 sidebar 的标题 */
+  useMarkdownTitle?: boolean,
 }
 
 export function autoSidebar(options?: SidebarOptions): Plugin;

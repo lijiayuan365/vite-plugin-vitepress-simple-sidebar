@@ -1,4 +1,4 @@
-import { utimesSync } from "fs";
+import { utimesSync, existsSync, promises as fs } from "fs";
 
 import type { DefaultTheme, SiteConfig } from 'vitepress';
 import type { Plugin } from 'vite';
@@ -22,6 +22,7 @@ async function mdWatcher(
   // 过滤非 md 文件操作
   if (!path.endsWith('.md')) return;
   if (event === 'change') {
+    configPath && forceReload(configPath);
     // 文件内容变化不更新
   } else {
     configPath && forceReload(configPath);
@@ -41,7 +42,8 @@ function autoSidebar(options: SidebarOptions = {}): Plugin {
     },
     async config(config) {
       const {
-        root
+        root,
+        cacheDir
       } = config;
       console.log('sidebar 生成中...');
       const [err, sidebar] = await awaitTo(buildSidebar(root, options));
@@ -49,6 +51,13 @@ function autoSidebar(options: SidebarOptions = {}): Plugin {
       if (!sidebar) return console.log('sidebar 生成失败', err);
       console.log('sidebar 结束');
       (config as unknown as UserConfig).vitepress.site.themeConfig.sidebar = sidebar;
+
+      if (cacheDir && !existsSync(cacheDir)) {
+        await fs.mkdir(cacheDir)
+      }
+      // fs.writeFile(`${cacheDir}/sidebar-cache.json`, JSON.stringify(sidebar)).then(() => {
+      //   console.log('缓存写入')
+      // })
     },
   };
 }

@@ -1,3 +1,5 @@
+import { promises as fs } from 'fs';
+
 /**
  * @param { Promise } promise
  * @param { Object= } errorExt - Additional Information you can pass to the err object
@@ -51,8 +53,24 @@ function unionArrays<T>(arr1: T[], arr2: T[]): T[] {
   return Array.from(set);
 }
 
+const headingRegex = /^#\s([^\n]+)/gm;
+async function getMdTitle(mdPath: string) {
+  const [e, data] = await awaitTo(fs.readFile(mdPath, 'utf-8'))
+  if(e) return;
+  // // 使用正则表达式查找所有一级标题
+  let match: string[] | null;
+  const headings: string[] = [];
+  while ((match = headingRegex.exec(data)) !== null) {
+    // match[1] 包含匹配的标题文本
+    headings.push(match[1].trim())
+  }
+  return headings[0];
+  
+}
+
 export {
   awaitTo,
   throttle,
   unionArrays,
+  getMdTitle,
 };
