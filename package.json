@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-vitepress-simple-sidebar",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "自动生成 vitepress 侧边栏目录的插件",
   "keywords": [
     "vite-plugin",
