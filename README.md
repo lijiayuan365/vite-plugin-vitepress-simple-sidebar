@@ -1,6 +1,8 @@
 # vite-plugin-vitepress-simple-sidebar
 [中文文档](./README-CN.md)
 
+**Note** This project is no longer maintained and has been merged into this [project](https://github.com/lijiayuan365/vite-plugin-vitepress-utils) for modifications.
+
 `vite-plugin-vitepress-simple-sidebar` is a plugin designed to automatically generate sidebar configurations for VitePress projects. It reads the file and subdirectory structure in the specified directory (default to the `.vitepress` folder) to create a navigation sidebar, simplifying the configuration process and improving development efficiency.
 
 ## Example Directory Structure

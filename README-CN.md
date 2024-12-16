@@ -1,5 +1,7 @@
 # vite-plugin-vitepress-simple-sidebar
 
+**提示** 该项目不再更新，塞到这个[项目](https://github.com/lijiayuan365/vite-plugin-vitepress-utils)进行一个修改。
+
 `vite-plugin-vitepress-simple-sidebar` 插件旨在为 VitePress 项目自动生成侧边栏配置。它根据指定目录（默认为 `.vitepress` 文件夹）中的文件和子目录结构，自动创建侧边栏导航，简化配置流程，提高开发效率。
 
 ## 示例目录结构
